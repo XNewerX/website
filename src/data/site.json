@@ -1,9 +1,9 @@
 {
-  "name": "Eleventy Duo",
-  "description": "Eleventy Duo is a minimal and beautiful Eleventy theme for personal blogs.",
+  "name": "Easy Access",
+  "description": "Blog für User Experience und Accessibility",
   "url": "https://eleventyduo.netlify.app",
   "author": {
-    "name": "Author Name",
+    "name": "Wladislaw Kostak",
     "email": "author@site.com",
     "twitterHandle": "author_handle"
   },
