@@ -23,16 +23,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
-      - run: npm ci
+      # npm ci ist schneller/sauberer; wenn das wegen Lockfile-Drift fehlschlägt, fallback auf npm install
+      - name: Install deps
+        run: |
+          npm ci --no-audit --no-fund || npm install --no-audit --no-fund
 
-      # Eleventy Duo hat zwei Builds: Assets (webpack) + Site (eleventy)
-      - run: npm run build
+      - name: Build site
+        run: npm run build
 
-      # Eleventy Duo legt die fertige Seite in "public" ab
-      - uses: actions/upload-pages-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./public   # Eleventy Duo output
 
   deploy:
     needs: build
