@@ -1,8 +1,9 @@
-name: Build and Deploy Eleventy site to GitHub Pages
+name: Deploy Eleventy to GitHub Pages
 
 on:
   push:
-    branches: [ NeuerBranch ]
+    branches: [ main ]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -11,30 +12,27 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: npm install
+      - run: npm ci
 
-      - name: Build site with Eleventy
-        run: npx eleventy
+      # Eleventy Duo hat zwei Builds: Assets (webpack) + Site (eleventy)
+      - run: npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      # Eleventy Duo legt die fertige Seite in "public" ab
+      - uses: actions/upload-pages-artifact@v3
         with:
-          path: _site   # Standard-Ausgabeordner von Eleventy
+          path: ./public
 
   deploy:
     needs: build
@@ -43,6 +41,5 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
