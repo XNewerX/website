@@ -17,8 +17,8 @@ const manifestPath = path.resolve(
 
 const manifest = isDev
   ? {
-      'main.js': '/assets/main.js',
-      'main.css': '/assets/main.css',
+      'main.js': 'assets/main.js',
+      'main.css': 'assets/main.css',
     }
   : JSON.parse(fs.readFileSync(manifestPath, { encoding: 'utf8' }));
 
@@ -40,17 +40,18 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ 'src/images': 'images' });
   eleventyConfig.setBrowserSyncConfig({ files: [manifestPath] });
 
-  eleventyConfig.addShortcode('bundledcss', function () {
-    return manifest['main.css']
-      ? `<link href="${manifest['main.css']}" rel="stylesheet" />`
-      : '';
-  });
+// Zugriff auf den eingebauten Eleventy-URL-Filter
+const urlFilter = eleventyConfig.getFilter('url');
 
-  eleventyConfig.addShortcode('bundledjs', function () {
-    return manifest['main.js']
-      ? `<script src="${manifest['main.js']}"></script>`
-      : '';
-  });
+// Shortcodes neu definieren: Pfade korrekt mit pathPrefix auflösen
+eleventyConfig.addShortcode('bundledcss', function () {
+  return manifest['main.css'] ? `<link href="${urlFilter(manifest['main.css'])}" rel="stylesheet">` : '';
+});
+
+eleventyConfig.addShortcode('bundledjs', function () {
+  return manifest['main.js'] ? `<script src="${urlFilter(manifest['main.js'])}"></script>` : '';
+});
+
 
   eleventyConfig.addFilter('excerpt', (post) => {
     const content = post.replace(/(<([^>]+)>)/gi, '');
@@ -129,5 +130,6 @@ module.exports = function (eleventyConfig) {
     templateFormats: ['html', 'njk', 'md'],
     htmlTemplateEngine: 'njk',
     markdownTemplateEngine: 'njk',
+    pathPrefix: '/website/'
   };
 };
