@@ -130,6 +130,6 @@ eleventyConfig.addShortcode('bundledjs', function () {
     templateFormats: ['html', 'njk', 'md'],
     htmlTemplateEngine: 'njk',
     markdownTemplateEngine: 'njk',
-    pathPrefix: '/website/'
+    
   };
 };
