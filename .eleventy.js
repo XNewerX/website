@@ -43,14 +43,17 @@ module.exports = function (eleventyConfig) {
 // Zugriff auf den eingebauten Eleventy-URL-Filter
 const urlFilter = eleventyConfig.getFilter('url');
 
-// Shortcodes neu definieren: Pfade korrekt mit pathPrefix auflösen
+// ✅ Fix: führenden Slash hinzufügen, damit |url korrekt funktioniert
 eleventyConfig.addShortcode('bundledcss', function () {
-  return manifest['main.css'] ? `<link href="${urlFilter(manifest['main.css'])}" rel="stylesheet">` : '';
+  const p = manifest['main.css'];
+  return p ? `<link href="${urlFilter('/' + p.replace(/^\//, ''))}" rel="stylesheet">` : '';
 });
 
 eleventyConfig.addShortcode('bundledjs', function () {
-  return manifest['main.js'] ? `<script src="${urlFilter(manifest['main.js'])}"></script>` : '';
+  const p = manifest['main.js'];
+  return p ? `<script src="${urlFilter('/' + p.replace(/^\//, ''))}"></script>` : '';
 });
+
 
 
   eleventyConfig.addFilter('excerpt', (post) => {
