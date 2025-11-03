@@ -68,6 +68,9 @@ Menschen mit motorischen Einschränkungen haben oft Schwierigkeiten mit dynamisc
 
 Motorisch eingeschränkte Personen haben Schwierigkeiten mit dynamischen Elementen wie Dropdown-Menüs, da diese eine präzise Maussteuerung erfordern. Hilfreich sind alternative Bedienmöglichkeiten, die sich an Tastaturnutzung orientieren, etwa die Hervorhebung fokussierter Elemente. Auch eine semantisch korrekte Auszeichnung von Buttons und Links unterstützt die Sprachsteuerung, indem sie diese Elemente korrekt erkennt und auflistet [9].
 
+![Beispiel einer Benutzeroberfläche mit zu kleinen Schaltflächen für Schließen und Suchen.](/images/posts/Arten-von-Behinderungen-kleine-schaltflaechen-beispiel.png)
+
+
 **Abbildung 1** Die Icons sind nur 16 × 16 Pixel groß, was zur Folge hat, dass sie mit der Maus nur sehr schwer zu treffen sind. Empfohlen sind 24 × 24 Pixel.  
 Menschen, die die Maus nicht nutzen können, sind auf die Tastatur oder andere wie Kopfstäbe, Mundstäbe, Spracherkennungssoftware usw. angewiesen.
 
