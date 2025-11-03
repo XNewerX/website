@@ -1,8 +1,8 @@
 ---
-title: a-post-containing-code-block-with-very-long-lines-of-code
-description: Health goth raw denim vaporware waistcoat, vegan neutra glossier. Cronut chartreuse tbh meh schlitz. Snackwave lumbersexual pinterest narwhal.
+title: Was ist eine Behinderung
+description: Erklärung, Definition und Arten"
 permalink: posts/{{ title | slug }}/index.html
-date: '2021-03-22'
+date: '2025-03-22'
 tags: [demo-content, code, mermaid]
 
 ---
