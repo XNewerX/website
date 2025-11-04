@@ -231,3 +231,33 @@ mark {
   white-space: nowrap;
   width: 1px;
 }
+
+
+/* =======================================
+   Einheitliches Styling für figure-Elemente im Blog
+   ======================================= */
+.figure-centered {
+  text-align: center;
+  margin: 2rem auto;
+}
+
+.figure-centered img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 4px;
+  display: block;
+  margin: 0 auto;
+}
+
+.figure-centered figcaption {
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.9em;
+  color: #444;
+  line-height: 1.4;
+  margin: 10px auto 10px auto;
+  max-width: inherit;
+}
